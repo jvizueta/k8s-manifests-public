@@ -11,7 +11,9 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
     nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502 http_503 http_504"
-    nginx.ingress.kubernetes.io/proxy-next-upstream-tries: "3"    
+    nginx.ingress.kubernetes.io/proxy-next-upstream-tries: "3"  
+    # increase size limit for attachments in Joget
+    nginx.ingress.kubernetes.io/proxy-body-size: "200m"  
 spec:
   ingressClassName: nginx
   rules:

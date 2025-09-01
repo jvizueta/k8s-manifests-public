@@ -24,7 +24,7 @@ spec:
               mountPath: /opt/joget/wflow
       containers:
         - name: joget
-          image: jogetworkflow/joget-dx8-tomcat9:latest
+          image: jogetworkflow/joget-dx8-tomcat9:8.1.4
           ports:
             - containerPort: 8080
               name: http
