@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: joget-wflow-pvc
+spec:
+  accessModes: ["ReadWriteOnce"]   # For >1 replicas use RWX
+  resources:
+    requests:
+      storage: 10Gi
+  # storageClassName: "longhorn"    # <— set explicitly if needed
