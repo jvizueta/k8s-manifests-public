@@ -1,4 +1,3 @@
-# apps/joget/base/mysql-pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
