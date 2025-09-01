@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: php-bootstrap
+data:
+  index.php: |
+    <?php
+    echo "<h1>wsagentes LAMP (sem MySQL) ✅</h1>";
+    echo "<p>PHP version: " . phpversion() . "</p>";
+    echo "<p>Servidor: " . htmlspecialchars(gethostname()) . "</p>";
+    echo "<p>Arquivo servido a partir do PVC em <code>/app/index.php</code>.</p>";
+    ?>
