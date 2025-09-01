@@ -5,6 +5,13 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # increase the ingress timeout to avoid "ERROR: Gateway Time-out" during Joget DX8 Initial Database Setup
+    nginx.ingress.kubernetes.io/app-root: /jw
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: "180"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-next-upstream: "error timeout http_502 http_503 http_504"
+    nginx.ingress.kubernetes.io/proxy-next-upstream-tries: "3"    
 spec:
   ingressClassName: nginx
   rules:
