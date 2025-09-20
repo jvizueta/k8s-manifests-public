@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lyra
+  labels:
+    app: lyra
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lyra
+  template:
+    metadata:
+      labels:
+        app: lyra
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/jvizueta/lyra:latest # kustomize will pin SHA in overlay
+          ports:
+            - containerPort: 8000
+          env:
+            - name: LC_MODEL
+              value: gpt-4o-mini
+          envFrom:
+            - secretRef:
+                name: lyra-env
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
