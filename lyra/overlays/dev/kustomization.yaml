@@ -3,7 +3,6 @@ kind: Kustomization
 resources:
   - env.sealed.yaml
   - cloudflared-tunnel-token.sealed.yaml
-  - cloudflared-tunnel.yaml
   - ../../base
 images:
   - name: ghcr.io/jvizueta/lyra
