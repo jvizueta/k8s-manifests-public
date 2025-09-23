@@ -8,3 +8,4 @@ resources:
   - 20-joget-pvc.yaml
   - 21-joget-deployment.yaml
   - 22-joget-service.yaml
+  - 23-joget-rbac.yaml
