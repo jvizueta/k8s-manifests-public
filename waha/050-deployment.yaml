@@ -23,6 +23,15 @@ spec:
           ports:
             - name: http
               containerPort: 3000
+          env:
+            # Force WAHA to bind to all interfaces instead of just [::1]
+            - name: WAHA_HOST
+              value: "0.0.0.0"
+            - name: WAHA_PORT
+              value: "3000"
+            # Disable authentication for development
+            # - name: WAHA_HTTP_AUTHENTICATION_ENABLED
+            #   value: "false"
           envFrom:
             - configMapRef:
                 name: waha-config
