@@ -30,8 +30,8 @@ spec:
             - name: WAHA_PORT
               value: "3000"
             # Disable authentication for development
-            # - name: WAHA_HTTP_AUTHENTICATION_ENABLED
-            #   value: "false"
+            - name: WAHA_HTTP_AUTHENTICATION_ENABLED
+              value: "false"
           envFrom:
             - configMapRef:
                 name: waha-config
