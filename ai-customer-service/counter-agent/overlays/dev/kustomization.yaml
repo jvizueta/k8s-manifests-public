@@ -7,4 +7,4 @@ resources:
   - ../../base
 images:
   - name: ghcr.io/jvizueta/ai-customer-service/counter-agent
-    newTag: latest
+    newTag: dev-b2eec43991e83a609baa03aa37329c2b11ab2c34
