@@ -12,13 +12,22 @@ jobs:
   merge:
     name: Merge if PR requested by trusted App
     runs-on: ubuntu-latest
-    # Condition: The PR author is the App (opened/reopened/synchronize)
-    if: >
-      github.event.pull_request.user &&
-      github.event.pull_request.user.id == fromJSON(secrets.AUTOMERGE_APP_ID)
 
     steps:
+      - name: Check if PR is from trusted App
+        id: check
+        env:
+          APP_ID: ${{ secrets.AUTOMERGE_APP_ID }}
+          PR_USER_ID: ${{ github.event.pull_request.user.id }}
+        run: |
+          if [ "$PR_USER_ID" == "$APP_ID" ]; then
+            echo "should_merge=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_merge=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Enable auto-merge (squash)
+        if: steps.check.outputs.should_merge == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
