@@ -1,0 +1,27 @@
+name: Auto-merge PRs from specific GitHub App
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write        # needed to merge
+  pull-requests: write   # not strictly needed for merge, but useful
+
+jobs:
+  merge:
+    name: Merge if PR requested by trusted App
+    runs-on: ubuntu-latest
+    # Condition: The PR author is the App (opened/reopened/synchronize)
+    if: >
+      github.event.pull_request.user &&
+      github.event.pull_request.user.id == fromJSON(secrets.AUTOMERGE_APP_ID)
+
+    steps:
+      - name: Enable auto-merge (squash)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          # Enable auto-merge; GitHub will complete the merge when checks/protections are satisfied
+          gh pr merge "$PR_NUMBER" --auto --squash
