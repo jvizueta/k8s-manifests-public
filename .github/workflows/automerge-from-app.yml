@@ -1,0 +1,36 @@
+name: Auto-merge PRs from specific GitHub App
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+
+permissions:
+  contents: write        # needed to merge
+  pull-requests: write   # not strictly needed for merge, but useful
+
+jobs:
+  merge:
+    name: Merge if PR requested by trusted App
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check if PR is from trusted App
+        id: check
+        env:
+          APP_ID: ${{ secrets.AUTOMERGE_APP_ID }}
+          PR_USER_ID: ${{ github.event.pull_request.user.id }}
+        run: |
+          if [ "$PR_USER_ID" == "$APP_ID" ]; then
+            echo "should_merge=true" >> $GITHUB_OUTPUT
+          else
+            echo "should_merge=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Enable auto-merge (squash)
+        if: steps.check.outputs.should_merge == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          # Enable auto-merge; GitHub will complete the merge when checks/protections are satisfied
+          gh pr merge "$PR_NUMBER" --auto --squash
