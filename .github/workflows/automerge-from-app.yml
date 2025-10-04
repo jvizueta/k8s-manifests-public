@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check if PR is from trusted App
+      - name: Check if PR is from trusted App User
         id: check
         env:
-          APP_ID: ${{ secrets.AUTOMERGE_APP_ID }}
+          AUTOMERGE_USER_ID: ${{ secrets.AUTOMERGE_USER_ID }}
           PR_USER_ID: ${{ github.event.pull_request.user.id }}
         run: |
-          if [ "$PR_USER_ID" == "$APP_ID" ]; then
+          if [ "$PR_USER_ID" == "$AUTOMERGE_USER_ID" ]; then
             echo "should_merge=true" >> $GITHUB_OUTPUT
           else
             echo "should_merge=false" >> $GITHUB_OUTPUT
