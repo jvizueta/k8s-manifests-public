@@ -5,8 +5,8 @@ on:
     types: [opened, reopened, synchronize]
 
 permissions:
-  contents: write        # needed to merge
-  pull-requests: write   # not strictly needed for merge, but useful
+  contents: write
+  pull-requests: write
 
 jobs:
   merge:
@@ -26,11 +26,14 @@ jobs:
             echo "should_merge=false" >> $GITHUB_OUTPUT
           fi
 
+      - name: Checkout repository
+        if: steps.check.outputs.should_merge == 'true'
+        uses: actions/checkout@v4
+
       - name: Enable auto-merge (squash)
         if: steps.check.outputs.should_merge == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          # Enable auto-merge; GitHub will complete the merge when checks/protections are satisfied
           gh pr merge "$PR_NUMBER" --auto --squash
