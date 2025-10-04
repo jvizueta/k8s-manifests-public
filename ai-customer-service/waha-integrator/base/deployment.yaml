@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: waha-integrator
+  labels:
+    app: waha-integrator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: waha-integrator
+  template:
+    metadata:
+      labels:
+        app: waha-integrator
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/jvizueta/ai-customer-service/waha-integrator:latest # kustomize will pin SHA in overlay
+          ports:
+            - containerPort: 8000
+          env:
+            - name: LC_MODEL
+              value: gpt-4o-mini
+          envFrom:
+            - secretRef:
+                name: waha-integrator-env
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
