@@ -19,12 +19,11 @@ spec:
           image: ghcr.io/jvizueta/ai-customer-service/waha-integrator:latest # kustomize will pin SHA in overlay
           ports:
             - containerPort: 8000
-          env:
-            - name: LC_MODEL
-              value: gpt-4o-mini
           envFrom:
             - secretRef:
-                name: waha-integrator-env
+                name: waha-integrator-secrets
+            - configMapRef:
+                name: waha-integrator-config
           readinessProbe:
             httpGet:
               path: /healthz

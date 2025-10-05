@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: waha-integrator-config
+data:
+  WAHA_BASE_URL: http://waha.waha-infra.svc.cluster.local:3000
+  COUNTER_AGENT_BASE_URL: http://counter-agent.ai-customer-service-dev.svc.cluster.local
+  DEFAULT_LANGUAGE: English
+  LOG_LEVEL: INFO
