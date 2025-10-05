@@ -5,4 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-5"
 data:
+  # Force WAHA to bind to all interfaces instead of just [::1]
+  WAHA_HOST: "0.0.0.0"
   WAHA_PORT: "3000"
+  # WAHA_HTTP_AUTHENTICATION_ENABLED: "false"
