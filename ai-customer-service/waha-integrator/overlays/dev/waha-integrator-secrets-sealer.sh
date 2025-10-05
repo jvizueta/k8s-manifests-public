@@ -8,7 +8,7 @@
 WAHA_API_KEY="<your_waha_api_key>"
 
 # --scope cluster-wide (usable in any namespace/name — less restrictive; use with care)
-kubectl create secret generic waha-integrator-secrets\
+kubectl create secret generic waha-integrator-secrets \
   --from-literal=WAHA_API_KEY="$WAHA_API_KEY" \
   --dry-run=client -o json \
 | kubeseal --format yaml --scope cluster-wide \
