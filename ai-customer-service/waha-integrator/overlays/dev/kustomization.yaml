@@ -6,4 +6,4 @@ resources:
   - ../../base
 images:
   - name: ghcr.io/jvizueta/ai-customer-service/waha-integrator
-    newTag: dev-0efaecaeb35ae6dfb2d2cf2e4afcd63b722d85d9
+    newTag: dev-7a410c537ee83d3c310e169e7b6e0f4496e93e7c
