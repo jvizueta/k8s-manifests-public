@@ -6,5 +6,5 @@ metadata:
 data:
   LC_MODEL: gpt-3.5-turbo
   LC_TEMPERATURE: "0.2"
-  LOG_LEVEL: INFO
-  REDIS_URL: redis://redis-master.ai-customer-service-dev.svc.cluster.local:6379/0
+  LOG_LEVEL: DEBUG
+  REDIS_URL: redis://redis-groundhog2k.ai-customer-service-dev.svc.cluster.local:6379/0
