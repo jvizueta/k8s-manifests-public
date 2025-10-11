@@ -1,6 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - counter-agent-config.yaml
   - env.cluster.sealed.yaml
   - ../../base
 images:
