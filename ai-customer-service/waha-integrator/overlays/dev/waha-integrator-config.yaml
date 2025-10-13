@@ -6,4 +6,4 @@ data:
   WAHA_BASE_URL: http://waha.waha-infra.svc.cluster.local:3000
   COUNTER_AGENT_BASE_URL: http://counter-agent.ai-customer-service-dev.svc.cluster.local
   DEFAULT_LANGUAGE: English
-  LOG_LEVEL: INFO
+  LOG_LEVEL: DEBUG
