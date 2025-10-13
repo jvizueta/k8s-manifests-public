@@ -1,0 +1,18 @@
+# https://redis.io/docs/latest/operate/redisinsight/install/install-on-k8s/
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisinsight-service       # name should not be 'redisinsight'
+                                   # since the service creates
+                                   # environment variables that
+                                   # conflicts with redisinsight
+                                   # application's environment
+                                   # variables `RI_APP_HOST` and
+                                   # `RI_APP_PORT`
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 5540
+  selector:
+    app: redisinsight
