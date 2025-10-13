@@ -29,7 +29,7 @@ spec:
               path: /healthz
               port: 8000
             initialDelaySeconds: 5
-            periodSeconds: 5
+            periodSeconds: 300
           resources:
             requests:
               cpu: 50m
