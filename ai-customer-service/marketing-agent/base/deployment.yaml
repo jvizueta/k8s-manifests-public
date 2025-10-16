@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: marketing-agent
+  labels:
+    app: marketing-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: marketing-agent
+  template:
+    metadata:
+      labels:
+        app: marketing-agent
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/jvizueta/ai-customer-service/marketing-agent:latest # kustomize will pin SHA in overlay
+          ports:
+            - containerPort: 8002
+            - containerPort: 5055
+          envFrom:
+            - configMapRef:
+                name: marketing-agent-config
+            # - secretRef:
+            #     name: marketing-agent-secrets  # (commented out until secrets are required)
+          readinessProbe:
+            httpGet:
+              path: /model
+              port: 8002
+            initialDelaySeconds: 15
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
