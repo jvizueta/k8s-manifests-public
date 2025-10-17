@@ -5,4 +5,4 @@ resources:
   - ../../base
 images:
   - name: ghcr.io/jvizueta/ai-customer-service/marketing-agent
-    newTag: dev-latest
+    newTag: dev-719cab6eae205ffe3d7c62979ba8dac6e8f1888d
