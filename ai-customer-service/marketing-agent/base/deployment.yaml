@@ -27,10 +27,20 @@ spec:
             #     name: marketing-agent-secrets  # (commented out until secrets are required)
           readinessProbe:
             httpGet:
-              path: /model
+              path: /status
               port: 8002
-            initialDelaySeconds: 15
-            periodSeconds: 30
+            initialDelaySeconds: 30   # estaba en 15; sube a 30–60 si el modelo tarda
+            periodSeconds: 15
+            timeoutSeconds: 2
+            failureThreshold: 5
+          livenessProbe:
+            httpGet:
+              path: /status
+              port: 8002
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            timeoutSeconds: 2
+            failureThreshold: 3
           resources:
             requests:
               cpu: 100m
