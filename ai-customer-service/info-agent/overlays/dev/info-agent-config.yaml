@@ -9,5 +9,5 @@ data:
   OLLAMA_BASE_URL: "http://192.168.1.22:11434"
   OLLAMA_MODEL: "llama3.1"
   OLLAMA_TEMPERATURE: "0.2"
-  LOG_LEVEL: "INFO"
+  LOG_LEVEL: "DEBUG"
   REDIS_URL: redis://redis-stack.redis-stack-dev.svc.cluster.local:6379/0
