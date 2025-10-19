@@ -5,4 +5,4 @@ resources:
   - ../../base
 images:
   - name: ghcr.io/jvizueta/ai-customer-service/info-agent
-    newTag: dev-latest
+    newTag: dev-9cebd2ed3fb2165bb04257f048b8261aeec7a769
