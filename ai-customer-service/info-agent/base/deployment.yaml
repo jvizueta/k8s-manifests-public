@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: info-agent
+  labels:
+    app: info-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: info-agent
+  template:
+    metadata:
+      labels:
+        app: info-agent
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/jvizueta/ai-customer-service/info-agent:latest # kustomize will pin SHA in overlay
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: info-agent-env
+            - configMapRef:
+                name: info-agent-config
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 30
+          resources:
+            requests:
+              cpu: 50m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: info-agent-config
+  labels:
+    app: info-agent
+
+data:
+  OLLAMA_BASE_URL: "http://192.168.1.22:11434"
+  OLLAMA_MODEL: "llama3.1"
+  LOG_LEVEL: "INFO"
