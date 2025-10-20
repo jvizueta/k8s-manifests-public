@@ -22,6 +22,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: info-agent-config
+            - secretRef:
+                name: info-agent-secrets
           readinessProbe:
             httpGet:
               path: /healthz
