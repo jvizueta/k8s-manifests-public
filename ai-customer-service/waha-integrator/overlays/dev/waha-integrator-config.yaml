@@ -4,6 +4,6 @@ metadata:
   name: waha-integrator-config
 data:
   WAHA_BASE_URL: http://waha.waha-infra.svc.cluster.local:3000
-  INFO_AGENT_BASE_URL: http://info-agent.ai-customer-service-dev.svc.cluster.local:8000
+  INFO_AGENT_BASE_URL: http://info-agent.ai-customer-service-dev.svc.cluster.local:80
   DEFAULT_LANGUAGE: English
   LOG_LEVEL: DEBUG
