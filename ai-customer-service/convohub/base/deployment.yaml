@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: convohub
+  labels:
+    app: convohub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: convohub
+  template:
+    metadata:
+      labels:
+        app: convohub
+    spec:
+      containers:
+        - name: convohub
+          image: ghcr.io/jvizueta/convohub:latest # adjust image as needed
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: convohub-config
+            - secretRef:
+                name: convohub-secrets
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          volumeMounts:
+            - name: google-credentials
+              mountPath: /var/run/credentials
+              readOnly: true
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
+      volumes:
+        - name: google-credentials
+          secret:
+            secretName: convohub-secrets
+            items:
+              - key: credentials.json
+                path: credentials.json
