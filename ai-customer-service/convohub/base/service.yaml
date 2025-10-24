@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: convohub
+  labels:
+    app: convohub
+spec:
+  selector:
+    app: convohub
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP

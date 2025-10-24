@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: convohub-config
+  labels:
+    app: convohub
+    env: dev
+
+data:
+  LOG_LEVEL: "DEBUG"
+  HOST: "0.0.0.0"
+  PORT: "8080"
+  OLLAMA_BASE_URL: "http://ollama.ai-customer-service-dev.svc.cluster.local:11434"
+  SUPERVISOR_MODEL: "llama3.1"
+  SUPERVISOR_TEMPERATURE: "0.2"
+  ORCHESTRATOR_MAX_STEPS: "6"
+  INFO_AGENT_MODEL: "llama2.1"
+  INFO_AGENT_SYSTEM_PROMPT: "You are an FAQ assistant. Answer clearly, concisely, and politely."
+  INFO_AGENT_RECENT_MESSAGES_WINDOW: "6"
+  INFO_AGENT_TOKEN_BUDGET: "8192"
+  INFO_AGENT_SUMMARY_TOKEN_BUDGET: "800"
+  INFO_AGENT_MESSAGES_TO_SUMMARIZE: "8"
+  INFO_AGENT_SUMMARIZATION_PROMPT_TOKENS: "100"
+  INFO_AGENT_MESSAGE_SUMMARY_CHAR_LIMIT: "600"
+  REDIS_URL: "redis://redis-stack.redis-stack-dev.svc.cluster.local:6379/0"
+  CALENDAR_ID: "primary"
+  DEFAULT_MEETING_DURATION_MINUTES: "30"
+  TIMEZONE: "UTC"
+  GOOGLE_CALENDAR_CREDENTIALS_FILE: "/var/run/credentials/credentials.json"
