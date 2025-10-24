@@ -4,3 +4,6 @@ resources:
   - configmap.yaml
   - convohub-secrets.clusterwide.sealed.yaml
   - ../../base
+images:
+  - name: ghcr.io/jvizueta/ai-customer-service/convohub
+    newTag: dev-latest
