@@ -6,4 +6,4 @@ resources:
   - ../../base
 images:
   - name: ghcr.io/jvizueta/ai-customer-service/convohub
-    newTag: dev-285d43f9436679ec0d923785bcba15b55e3cae80
+    newTag: dev-65830556bac19b5fa8daee283772f148112b24be
