@@ -31,6 +31,7 @@ spec:
             - sh
             - -c
             - |
+              chmod 644 $JAVA_HOME/lib/security/cacerts
               keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts \
                 -storepass changeit -alias wsagentes-tls-cert -file /tls/tls.crt -noprompt
           volumeMounts:
