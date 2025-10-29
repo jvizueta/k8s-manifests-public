@@ -22,6 +22,17 @@ spec:
           volumeMounts:
             - name: wflow
               mountPath: /opt/joget/wflow
+        - name: import-tls-cert
+          image: jogetworkflow/joget-dx8-tomcat9:8.0.10
+          command:
+            - sh
+            - -c
+            - |
+              keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts \
+                -storepass changeit -alias joget-tls-cert -file /tls/tls.crt -noprompt
+          volumeMounts:
+            - name: joget-tls-cert
+              mountPath: /tls
       containers:
         - name: joget
           image: jogetworkflow/joget-dx8-tomcat9:8.0.10
@@ -38,6 +49,9 @@ spec:
           volumeMounts:
             - name: wflow
               mountPath: /opt/joget/wflow
+            - name: joget-tls-cert
+              mountPath: /tls
+              readOnly: true
           readinessProbe:
             httpGet: { path: /jw, port: 8080 }
             initialDelaySeconds: 30
@@ -50,3 +64,6 @@ spec:
         - name: wflow
           persistentVolumeClaim:
             claimName: joget-wflow-pvc
+        - name: joget-tls-cert
+          secret:
+            secretName: joget-tls-cert
