@@ -29,9 +29,9 @@ spec:
             - -c
             - |
               keytool -import -trustcacerts -keystore $JAVA_HOME/lib/security/cacerts \
-                -storepass changeit -alias joget-tls-cert -file /tls/tls.crt -noprompt
+                -storepass changeit -alias wsagentes-tls-cert -file /tls/tls.crt -noprompt
           volumeMounts:
-            - name: joget-tls-cert
+            - name: wsagentes-tls-cert
               mountPath: /tls
       containers:
         - name: joget
@@ -49,7 +49,7 @@ spec:
           volumeMounts:
             - name: wflow
               mountPath: /opt/joget/wflow
-            - name: joget-tls-cert
+            - name: wsagentes-tls-cert
               mountPath: /tls
               readOnly: true
           readinessProbe:
@@ -64,6 +64,6 @@ spec:
         - name: wflow
           persistentVolumeClaim:
             claimName: joget-wflow-pvc
-        - name: joget-tls-cert
+        - name: wsagentes-tls-cert
           secret:
-            secretName: joget-tls-cert
+            secretName: wsagentes-tls-cert
