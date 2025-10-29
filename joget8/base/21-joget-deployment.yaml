@@ -13,7 +13,7 @@ spec:
         app: joget-dx8-tomcat9
     spec:
       securityContext:
-        runAsUser: 1000
+        runAsUser: 0
         fsGroup: 0
       initContainers:
         - name: init-volume
