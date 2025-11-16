@@ -1,6 +1,6 @@
 FILE_PATH="/home/administrator/.cloudflared/cert.pem"
 
-kubectl create secret generic cloudflare-cert \
+kubectl create secret generic cloudflared-cert \
   --from-file=cert.pem="$FILE_PATH" \
   --dry-run=client -o json \
 | kubeseal --format yaml --scope cluster-wide \
