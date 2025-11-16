@@ -1,0 +1,17 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  annotations:
+    sealedsecrets.bitnami.com/cluster-wide: "true"
+  creationTimestamp: null
+  name: controller-manager
+spec:
+  encryptedData:
+    cert.pem: AgB1inDmMFNS1VZGpwk0GIuS0H8DyekWqNjvF2N4yRjwMdKHA1d5T6txXCAdVDKHy15XeATrwUNd7vVWmlWHNhPLUcPE1r9o/hygCpjss+gLba/9f0wpGiTEl2HS1mUFFx5iEVc/IAvd0q8XTW/gJrxIyGE11D0eyT8PEwVwzRDQMNHWhihbfKEHUU0Gg6NEKWoklUQAqpOtCYRbPjgDULF3DxVRibGfN0nrn+SMm5QgWXA7hE+GCirkLIWVbISrfdnzDe+RRhV4ri56RoejHFA4wSYdwxukYwr9CTXTIox4lgoyko72buWOHQYAwT6sYjPMX+/g3lhn1wX86G9nXO8F5lWUl4R+1W90QIAgb2KtM8Sxb0HHZzWEVzVH6pNiRxnT8aPA2BpJust5PUevTx/iuOH8koc1FLnuQ1xz7fO6RYDkS6lhNbo8uTvj4xaVtcu4MxChQSX9gqgTBwPtOYfYcBsYj8NqwA3oPGdf5K8l2AAlI8p2fVGniceTM+ihJ+qqnWK+fF4raP9/0dCAShDoy3OFQwtYK5ERt2yyz1CTwlIVYJ0xDjlsAEG3AkjJ2sn4G3to6XybZ1lKfgL7MRS9VyLUhrhviqhmK6fIxrd/2KALxPByAF9l8Vf5O3z1A9HpHPHX03JpjiXisBxVgqfHtFJtW7RRyWdOFcsThep5uvceQH2qsPqQGfHBtCYbKBi1FUmDctgf0Q3MNYymPfuoT6bDtK8XLXhc+RjKum2uvTOt4tFGBXHCO2L1xdhz4Jj2PPmbZjPtlQpbk9/tzO+ErA5zCcAQyLDuoZHVYOLBxjDjZgDaBqdLS2PHa7tsazOo/MWkbf0Y+M8ebeZXbgolPbakhlCBVlWj6XQbtT+rEdFt59Ahf0/nciCFajc79MopHm8nPuknushg23T7GITLYw/z7J8IzfczJsenFpNoeMYqBg4OtBmRBa1V+roPRsywCLgyrkxeKO7RqS0Zf67/KRSySfyPqA5va0JXIS+yzB2QQeq72meprpAly8Bcp1V57+lMRnTco43BEM8MnuHjwE9rif2Lel1W6w==
+  template:
+    metadata:
+      annotations:
+        sealedsecrets.bitnami.com/cluster-wide: "true"
+      creationTimestamp: null
+      name: controller-manager
